@@ -1,35 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  const handelClick = ()=>{
+    setTheme(theme==='ligth'? 'dark' : 'ligth')
+    console.log(theme);
+  }
+  return <div className= "w-full h-screen bg-white  dark:bg-[#23272F] dark:text-white">
+  <button onClick={handelClick} className="py-2 px-8 bg-teal-500 rounded-full">btn</button>
+  <div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet sequi neque cum at quas, saepe tenetur ullam molestias deleniti nemo doloremque impedit perspiciatis minima quos dicta ea, rerum ad explicabo numquam ut corporis quam expedita dolorum reiciendis! Sint, culpa repudiandae, in expedita quis reprehenderit provident quo possimus soluta repellendus cum sunt optio, sit facere quidem. Aliquam excepturi, illum atque iste quia cumque exercitationem eum aut debitis maiores tenetur delectus voluptatum ex sapiente dicta nesciunt incidunt labore quibusdam iure minima laborum. Consequatur odio explicabo nisi, ipsum ad vitae. Quisquam dolores quibusdam numquam, eveniet ducimus, enim facilis explicabo praesentium unde, tenetur iure! Sequi, autem vitae recusandae molestias earum aspernatur facilis, quas iste corporis reprehenderit voluptatibus dignissimos eos necessitatibus eligendi? Repudiandae quae iure, possimus est ut odit, cum pariatur dolorum, sapiente laborum animi. Laudantium saepe repudiandae veritatis, ea quod dolor sunt harum earum ipsam deserunt alias nulla ad perferendis libero rerum repellendus maxime adipisci quia aspernatur officiis? Maiores suscipit voluptate incidunt, aperiam quo omnis. Perspiciatis asperiores mollitia aliquid numquam, rem pariatur corporis corrupti. Eum temporibus explicabo dicta enim non ex deserunt nostrum assumenda ipsum veniam nesciunt soluta suscipit minima et in cum quos culpa, iste, ducimus, animi unde! Quasi atque facere deserunt fugiat tempora nesciunt. Minus officia alias consequatur, tempore, inventore ducimus voluptatum, eum quisquam ipsa fugit perferendis obcaecati et velit recusandae dicta iste ea excepturi magni. Neque hic consequatur obcaecati amet nesciunt sint ipsum quidem maiores vel, delectus ex ullam repellendus magnam. Obcaecati quidem ipsa, cupiditate ullam nobis vero harum, a eligendi quasi non nulla quo voluptatem enim consequuntur accusantium illo, veritatis iusto? Quasi molestias excepturi libero cumque itaque, sed dolorem minima rem possimus quod atque! Debitis nam facilis, labore mollitia voluptate aliquid sequi iste quisquam dignissimos eveniet. Labore accusamus eius voluptatibus esse? Libero est nulla nihil aliquam corrupti, nesciunt quaerat molestiae atque. Dolorum, molestiae distinctio? Repellendus sit debitis sed assumenda, iusto inventore, aspernatur quia adipisci facere ut ipsum culpa nisi aliquam sunt, consequuntur dolorum veniam? Quidem assumenda, cum eum quo deleniti culpa. Explicabo quasi distinctio sit totam saepe minus aut officiis delectus nam! Est ullam rerum doloribus repudiandae voluptas eligendi, saepe culpa iure, veniam neque amet placeat modi. Sint non aliquam iusto quisquam praesentium est quae. Reprehenderit cum dolorem libero nulla. Repellat adipisci alias culpa incidunt nobis dolorum quas recusandae vero? Sed mollitia dolores eligendi inventore porro fuga voluptates culpa. At velit necessitatibus beatae voluptatem aperiam, iste debitis, dolor quisquam perferendis id provident. Porro eum distinctio quasi obcaecati ipsa et possimus quidem repellendus libero, odio ad nobis necessitatibus aliquid voluptatibus tempora quam, ipsum ratione alias similique sed nesciunt. Quis non ad numquam velit animi, nisi, veritatis ab consequatur soluta ea recusandae nostrum, corrupti fugiat in? Nisi, quae cupiditate sit aliquam voluptate fugiat! Ut iusto consequatur, libero nobis placeat labore excepturi maxime nam molestias nesciunt quaerat laborum, neque odit? Facere odit architecto voluptas laboriosam assumenda earum ex! Eius voluptatem, sequi iusto blanditiis cum eum. Id architecto a impedit aut ipsum nostrum, neque molestiae unde sapiente dignissimos doloribus hic ipsam ea. Obcaecati, nobis.</p>
+  </div>
+  </div>;
 }
 
-export default App
+export default App;
