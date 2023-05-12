@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
+import Navigation from "../../Pages/Shared/Navigation/Navigation";
+import { Outlet } from "react-router-dom";
+import Footer from "../../Pages/Shared/Footer/Footer";
 
 const Main = () => {
-  const [theme, setTheme] = useState("ligth");
+  const [theme, setTheme] = useState(true);
   useEffect(() => {
-    if (theme == "dark") {
+    if (theme) {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
   }, [theme]);
-  const handelTheme = ()=>{
-    setTheme(theme=="light"?'dark':'light');
-  }
-  return <div className="w-full h-screen bg-white dark:bg-[#23272F]">
-    <button onClick={handelTheme}>btn</button>
+  return <div className="w-full bg-white dark:bg-[#23272F] dark:text-white">
+    <Navigation  theme={theme} setTheme={setTheme}></Navigation>
+    <Outlet></Outlet>
+    <Footer></Footer>
   </div>;
 };
 

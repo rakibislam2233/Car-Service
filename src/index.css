@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Delicious+Handrawn&family=Exo+2&family=Itim&family=Josefin+Sans&family=Poppins&family=Rancho&family=Roboto&family=Ubuntu&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body{
+  font-family: 'Josefin Sans', sans-serif;
+}
