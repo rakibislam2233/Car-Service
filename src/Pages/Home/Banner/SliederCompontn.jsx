@@ -6,9 +6,10 @@ const SliederComponent = ({ bg }) => {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
-          backgroundBlendMode:'multiply'
+          backgroundBlendMode:'multiply',
+          width:'100%'
         }}
-        className={`bg-gray-500 w-full h-screen rounded px-2`}
+        className={`bg-gray-500  h-screen rounded px-2`}
       >
           <div className="w-ful h-full flex justify-center items-center lg:justify-start ">
              <div className="w-full lg:w-1/2 p-5 md:p-20 space-y-4 ">
