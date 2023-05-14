@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { BsFillSunFill,BsMoonFill } from "react-icons/bs";
-import logo from '../../../assets/assets/Logo/CarLogo.png'
-const Navigation = ({ theme,setTheme }) => {
+import { BsFillSunFill, BsMoonFill } from "react-icons/bs";
+import logo from "../../../assets/assets/Logo/CarLogo.png";
+import { UserContext } from "../../../Context/AuthProvider/AuthProvider";
+const Navigation = ({ theme, setTheme }) => {
+  const { user,logOut } = useContext(UserContext);
+  console.log(user);
+  const handelLogout = ()=>{
+    logOut().then(()=>{}).catch(err=>console.log(err.message))
+  }
   return (
     <div className="navbar w-full max-w-7xl mx-auto bg-base-100 dark:bg-[#23272F] dark:text-white px-2 py-5">
       <div className="navbar-start">
@@ -27,26 +33,32 @@ const Navigation = ({ theme,setTheme }) => {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 w-52 dark:bg-[#23272F] dark:text-white"
           >
-              <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/services">Service</Link>
-          </li>
-          <li>
-            <Link to="">Blog</Link>
-          </li>
-          <li>
-            <Link to="">Contact</Link>
-          </li>
-            <li onClick={()=>setTheme(!theme)}>
-            {
-                theme?<button ><BsFillSunFill className="w-6 h-6"></BsFillSunFill></button>:<button><BsMoonFill className="w-6 h-6"></BsMoonFill></button >
-            }
-          </li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/services">Service</Link>
+            </li>
+            <li>
+              <Link to="">Blog</Link>
+            </li>
+            <li>
+              <Link to="">Contact</Link>
+            </li>
+            <li onClick={() => setTheme(!theme)}>
+              {theme ? (
+                <button>
+                  <BsFillSunFill className="w-6 h-6"></BsFillSunFill>
+                </button>
+              ) : (
+                <button>
+                  <BsMoonFill className="w-6 h-6"></BsMoonFill>
+                </button>
+              )}
+            </li>
           </ul>
         </div>
         <img className="w-12 h-12" src={logo} alt="" />
@@ -66,26 +78,41 @@ const Navigation = ({ theme,setTheme }) => {
             <Link to="">Blog</Link>
           </li>
           <li>
+            {user && (
+              <h3>
+                <Link to={"/booking"}>My Bookings</Link>
+              </h3>
+            )}
+          </li>
+          <li>
             <Link to="">Contact</Link>
           </li>
-          <li onClick={()=>setTheme(!theme)}>
-            {
-                theme?<button ><BsFillSunFill className="w-6 h-6"></BsFillSunFill></button>:<button><BsMoonFill className="w-6 h-6"></BsMoonFill></button >
-            }
+          <li onClick={() => setTheme(!theme)}>
+            {theme ? (
+              <button>
+                <BsFillSunFill className="w-6 h-6"></BsFillSunFill>
+              </button>
+            ) : (
+              <button>
+                <BsMoonFill className="w-6 h-6"></BsMoonFill>
+              </button>
+            )}
           </li>
-          {/* <li>
-            {
-              user?<div className="">
-               <h3> <Link to={'/bookings'}>My Bookings</Link></h3>
-                <button className="btn btn-warning">Log Out</button></div>:<Link to='/login'><button className="btn btn-success">Login</button></Link>
-            }
-          </li> */}
         </ul>
       </div>
       <div className="navbar-end">
-     <div>
-     <Link to={'/login'}><button className="btn bg-orange-600 border-none">Login</button></Link>
-     </div>
+        <div>
+          {user ? (
+            <div className="flex gap-2">
+              <img className="w-12 h-12 ring-2 ring-slate-50 rounded-full" src={user.photoURL} alt="photoUrl" />
+              <button onClick={handelLogout} className="btn bg-orange-600 border-none">Log Out</button>
+            </div>
+          ) : (
+            <Link to="/login">
+              <button className="btn  bg-orange-600 border-none">Login</button>
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );

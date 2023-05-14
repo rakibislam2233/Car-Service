@@ -7,8 +7,12 @@ import ServiceDetails from "../../Pages/Home/Sevices/ServiceDetails";
 import CheckOut from "../../Pages/Home/CheckOut/CheckOut";
 import Login from "../../Pages/Auth/Login/Login";
 import SignUp from "../../Pages/Auth/SignUp/SignUp";
+import PrivetRoute from "../PrivetRoute/PrivetRoute";
+import Booking from "../../Pages/Home/Booking/Booking";
+import { useContext } from "react";
+const router = createBrowserRouter(
+  [
 
-const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
@@ -32,8 +36,13 @@ const router = createBrowserRouter([
         },
         {
           path:'checkOut/:id',
-          element:<CheckOut></CheckOut>,
+          element:<PrivetRoute><CheckOut></CheckOut></PrivetRoute>,
           loader:({params})=> fetch(`http://localhost:5000/services/${params.id}`)
+        },
+        {
+          path:'/booking',
+          element:<Booking></Booking>,
+         
         },
         {
           path:'/login',

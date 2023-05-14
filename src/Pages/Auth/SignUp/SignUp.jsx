@@ -1,19 +1,24 @@
-import { Link,  } from "react-router-dom";
+import { Link, useNavigate,  } from "react-router-dom";
 import login from "../../../assets/assets/images/login/login.svg";
-import { BsFacebook, BsGoogle, BsLinkedin } from "react-icons/bs";
+import { useContext } from "react";
+import { UserContext } from "../../../Context/AuthProvider/AuthProvider";
+import { updateProfile } from "firebase/auth";
 const SignUp = () => {
+  const {createUser,logOut} = useContext(UserContext)
+  const naviget = useNavigate()
   const handelSignUp = e =>{
     e.preventDefault()
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    const photUrl = form.photUrl.value;
     createUser(email, password)
     .then(result=>{
       const user = result.user;
-      updateUser(user,name)
-      toast.success('User Successfully created!');
+      updateUser(user,name,photUrl)
       naviget('/login')
+      logOut().then(() =>{}).catch((err) => { console.log(err.message)});
       form.reset()
     })
     .catch(err => {

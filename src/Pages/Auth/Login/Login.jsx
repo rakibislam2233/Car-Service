@@ -1,9 +1,14 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import login from "../../../assets/assets/images/login/login.svg";
-import { BsFacebook, BsGoogle, BsLinkedin } from "react-icons/bs";
+import { UserContext } from "../../../Context/AuthProvider/AuthProvider";
+import { useContext } from "react";
+import Swal from 'sweetalert2'
 const Login = () => {
-//   const {signIn} = useContext(UserContext)
-//   const naviget = useNavigate()
+  const {signIn} = useContext(UserContext)
+  const naviget = useNavigate();
+  const location = useLocation()
+  console.log(location);
+  const from = location.state?.from?.pathname || '/'
   const handelLogin = e =>{
     e.preventDefault()
     const form = e.target;
@@ -12,9 +17,14 @@ const Login = () => {
     signIn(email, password)
     .then(result=>{
       const user = result.user;
-      console.log(user);
-      naviget('/')
-      toast.success('User Successfully created!');
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Login Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      naviget(from)
       form.reset()
     })
     .catch(error =>{
