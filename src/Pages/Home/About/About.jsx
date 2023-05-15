@@ -8,11 +8,11 @@ const About = () => {
        <div className='lg:w-1/2 relative'>
        <img
           src={person}
-          className="w-full max-w-sm rounded-lg shadow-2xl"
+          className="w-full lg:max-w-md rounded-lg shadow-2xl"
         />
        <img
           src={parts}
-          className="w-full max-w-sm hidden md:block absolute right-4 top-20 rounded-lg shadow-2xl"
+          className="w-full max-w-sm hidden lg:block absolute right-4 top-20 rounded-lg shadow-2xl"
         />
        </div>
         <div className='lg:w-1/2 space-y-7'>

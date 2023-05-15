@@ -4,11 +4,14 @@ import { BsFillSunFill, BsMoonFill } from "react-icons/bs";
 import logo from "../../../assets/assets/Logo/CarLogo.png";
 import { UserContext } from "../../../Context/AuthProvider/AuthProvider";
 const Navigation = ({ theme, setTheme }) => {
-  const { user,logOut } = useContext(UserContext);
-  console.log(user);
-  const handelLogout = ()=>{
-    logOut().then(()=>{}).catch(err=>console.log(err.message))
-  }
+  const { user, logOut } = useContext(UserContext);
+  const handelLogout = () => {
+    logOut()
+      .then(() => {
+        localStorage.removeItem("carServiceToken");
+      })
+      .catch((err) => console.log(err.message));
+  };
   return (
     <div className="navbar w-full max-w-7xl mx-auto bg-base-100 dark:bg-[#23272F] dark:text-white px-2 py-5">
       <div className="navbar-start">
@@ -46,6 +49,13 @@ const Navigation = ({ theme, setTheme }) => {
               <Link to="">Blog</Link>
             </li>
             <li>
+              {user && (
+                <h3>
+                  <Link to={"/booking"}>My Bookings</Link>
+                </h3>
+              )}
+            </li>
+            <li>
               <Link to="">Contact</Link>
             </li>
             <li onClick={() => setTheme(!theme)}>
@@ -61,7 +71,7 @@ const Navigation = ({ theme, setTheme }) => {
             </li>
           </ul>
         </div>
-        <img className="w-12 h-12" src={logo} alt="" />
+        <img className="w-12 h-12 cursor-pointer" src={logo} alt="" />
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="flex gap-5 font-semibold">
@@ -103,9 +113,21 @@ const Navigation = ({ theme, setTheme }) => {
       <div className="navbar-end">
         <div>
           {user ? (
-            <div className="flex gap-2">
-              <img className="w-12 h-12 ring-2 ring-slate-50 rounded-full" src={user.photoURL} alt="photoUrl" />
-              <button onClick={handelLogout} className="btn bg-orange-600 border-none">Log Out</button>
+            <div className="flex gap-2 items-center">
+              <div className="tooltip  tooltip-bottom" data-tip={`${user.displayName}`}>
+              <img
+                className="w-12 h-12 cursor-pointer ring-2 ring-slate-50 rounded-full"
+                src={user.photoURL}
+                alt="photoUrl"
+              />
+              </div>
+              
+              <button
+                onClick={handelLogout}
+                className="btn bg-orange-600 border-none"
+              >
+                Log Out
+              </button>
             </div>
           ) : (
             <Link to="/login">

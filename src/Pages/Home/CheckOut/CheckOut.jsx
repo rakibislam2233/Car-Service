@@ -17,14 +17,13 @@ const CheckOut = () => {
     const bookingDetails ={
       name,email,price,date,img,status
     }
-   fetch('http://localhost:5000/bookings',{
+   fetch('https://car-service-server-side.vercel.app/bookings',{
     method: 'POST',
     headers:{'content-type': 'application/json'},
     body: JSON.stringify(bookingDetails)
    })
    .then(res=>res.json())
    .then(data=>{
-    console.log(data);
     if(data.insertedId){
       Swal.fire({
         position: 'center',

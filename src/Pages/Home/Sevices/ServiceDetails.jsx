@@ -3,7 +3,6 @@ import { Link, useLoaderData } from "react-router-dom";
 import { BsArrowBarLeft, BsArrowBarRight, BsArrowRight } from "react-icons/bs";
 const ServiceDetails = () => {
   const singleService = useLoaderData();
-  console.log(singleService);
   const { _id, title, service_id, price, img, description } = singleService;
   return (
     <div>

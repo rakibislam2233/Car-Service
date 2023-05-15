@@ -32,12 +32,12 @@ const router = createBrowserRouter(
         {
           path:'/servicesDetails/:id',
           element:<ServiceDetails></ServiceDetails>,
-          loader:({params})=> fetch(`http://localhost:5000/services/${params.id}`)
+          loader:({params})=> fetch(`https://car-service-server-side.vercel.app/services/${params.id}`)
         },
         {
           path:'checkOut/:id',
           element:<PrivetRoute><CheckOut></CheckOut></PrivetRoute>,
-          loader:({params})=> fetch(`http://localhost:5000/services/${params.id}`)
+          loader:({params})=> fetch(`https://car-service-server-side.vercel.app/services/${params.id}`)
         },
         {
           path:'/booking',

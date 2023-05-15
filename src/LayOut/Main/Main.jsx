@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "../../Pages/Shared/Footer/Footer";
 
 const Main = () => {
-  const [theme, setTheme] = useState(true);
+  const [theme, setTheme] = useState(false);
   useEffect(() => {
     if (theme) {
       document.documentElement.classList.add("dark");

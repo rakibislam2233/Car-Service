@@ -1,19 +1,30 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
 import MyBookingDetails from "./MyBookingDetails";
 import Swal from "sweetalert2";
 import { UserContext } from "../../../Context/AuthProvider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 const Booking = () => {
   const { user } = useContext(UserContext);
   const [bookingDetail, setbookingDetail] = useState([]);
+  const token = localStorage.getItem('carServiceToken');
+  const neviget = useNavigate()
   useEffect(() => {
-    fetch(`http://localhost:5000/bookings?email=${user?.email}`)
+    fetch(`https://car-service-server-side.vercel.app/bookings?email=${user?.email}`,{
+      method:'GET',
+      headers:{
+        authorization:`Bearer ${token}`
+      }
+    })
       .then((response) => response.json())
       .then((data) => {
-        setbookingDetail(data);
+        if(!data.error){
+          setbookingDetail(data);
+        }
+        else{
+          neviget('/')
+        }
       });
   }, [user]);
-  console.log(bookingDetail);
   const hendelRemove = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -25,12 +36,11 @@ const Booking = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/bookings/${id}`, {
+        fetch(`https://car-service-server-side.vercel.app/bookings/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             if (data.deletedCount) {
               Swal.fire({
                 position: "center",
@@ -47,15 +57,13 @@ const Booking = () => {
     });
   };
   const handelUpdate = (id) => {
-    console.log(id);
-    fetch(`http://localhost:5000/bookings/${id}`, {
+    fetch(`https://car-service-server-side.vercel.app/bookings/${id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ status: "Confirmed" }),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount > 0) {
           const remaning = bookingDetail.filter(
             (booking) => booking._id !== id
@@ -81,7 +89,7 @@ const Booking = () => {
           <h3 className="text-3xl font-semibold">No Booking Data</h3>
         </div>
       ) : (
-        <div className="w-full max-w-7xl mx-auto overflow-x-auto py-10">
+        <div className="w-full  max-w-7xl h-80 mx-auto overflow-auto py-10">
           <table className="table w-full max-w-7xl mx-auto dark:text-black">
             {/* head */}
             <thead>
